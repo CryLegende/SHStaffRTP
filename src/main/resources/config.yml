@@ -1,0 +1,47 @@
+messages:
+  onlyPlayers: "Seuls les joueurs peuvent utiliser cette commande !"
+  noPermission: "&8&l« &f&lSH &8&l» &fCommande inconnue, essayer autre chose."
+  allPlayersVisited: |-
+    &7&l« &a&lSH &8&l» &7Vous avez visité tout les joueurs connectés
+    &7(votre travail sera récompensé par la compagnie)
+  teleportedTo: '[
+        {
+            "text": "&r\n"
+        },
+        {
+            "text": "&7&l« &e&lSH &8&l» &f"
+        },
+        {
+            "text": "%vault_prefix%%player_name%",
+            "clickEvent": {
+                "action": "run_command",
+                "value": "/tp %player_name%"
+            }
+        },
+        {
+            "text": " %jetsantiafkpro_isafk% "
+        },
+        {
+            "text": "&e(inv)",
+            "clickEvent": {
+                "action": "run_command",
+                "value": "/inv %player_name%"
+            },
+            "hoverEvent": {
+                "action":"show_text",
+                "value":"&7Clic pour voir l''inventaire de &6%player_name%"
+            }
+
+        },
+        {
+            "text": "\n&7&l« &e&lSH &8&l» &7En ligne depuis &e%jetsantiafkpro_session_timeplayed_hours%h%jetsantiafkpro_session_timeplayed_minutes%m &8(&7Temps de jeux : &e%jetsantiafkpro_timeplayed_hours_unformatted%h&8)"
+        },
+        {
+            "text": "\n&7&l« &e&lSH &8&l» &7Fly: %changeoutput_equals_input:{player_is_flying}_matcher:yes_ifmatch:&aOui_else:&cNon% &7&l| &7Tempfly: %shtempfly_time%"
+        }
+    ]'
+
+
+  # teleportedTo: |-
+  #   &7&l« &e&lSH &8&l» &fTéléportation à %vault_prefix%%player% %jetsantiafkpro_isafk% &e(inv)
+  #   &7&l« &e&lSH &8&l» &7Fly: %changeoutput_equals_input:{player_is_flying}_matcher:yes_ifmatch:&aOui_else:&cNon% &7&l| &7TFly: &d%shtempfly_time%
