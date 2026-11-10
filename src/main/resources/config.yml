@@ -1,3 +1,28 @@
+# SHStaffRTP
+#
+# Téléporte un membre du staff à un joueur connecté tiré au hasard. Un joueur déjà visité n'est plus tiré avant que
+# tous les autres l'aient été (le tour recommence alors) ; les joueurs qui ont shstaffrtp.bypass ne sont jamais tirés.
+#
+# Commande :
+#   /staffrtp                        Téléportation au joueur tiré.
+#
+# Permissions :
+#   shstaffrtp.use                   Utiliser /staffrtp.
+#   shstaffrtp.bypass                Ne jamais être tiré au sort.
+#
+# Les textes sont dans la section messages ci-dessous : teleportedTo est un message JSON où PlaceholderAPI remplit
+# les placeholders avec le joueur visité.
+#
+# Mode réseau, actif seulement si SHNetwork est installé : le tirage porte sur les joueurs de tous les serveurs.
+# Quand le joueur tiré est sur un autre serveur, son serveur confirme qu'il peut être visité, le membre du staff y est
+# envoyé puis téléporté à lui dès son arrivée. Le tour des joueurs déjà visités est tenu par chaque serveur.
+reseau:
+  actif: true
+  # Temps laissé au serveur du joueur tiré pour répondre, en ticks. Sans réponse, un autre joueur est tiré.
+  attente-reponse-ticks: 40
+  # Temps laissé à l'arrivée sur l'autre serveur avant la téléportation, en ticks, le temps que les données du staff se chargent.
+  delai-arrivee-ticks: 30
+
 messages:
   onlyPlayers: "Seuls les joueurs peuvent utiliser cette commande !"
   noPermission: "&8&l« &f&lSH &8&l» &fCommande inconnue, essayer autre chose."

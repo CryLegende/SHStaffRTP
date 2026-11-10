@@ -24,6 +24,18 @@ Utilisé sur : **Opale**.
 |---|---|---|---|
 | `/staffrtp` | — | Téléporte le staff à un joueur aléatoire | — |
 
+## Plusieurs serveurs (SHNetwork)
+
+Avec SHNetwork installé et `reseau.actif: true` (valeur par défaut), `/staffrtp` tire parmi les joueurs de tous les serveurs, pas seulement ceux du serveur du staff.
+
+- Un joueur tiré sur un autre serveur est d'abord proposé à son serveur, qui refuse ceux qui ont `shstaffrtp.bypass` ; un autre joueur est alors tiré.
+- Si le serveur accepte, le membre du staff y est envoyé puis téléporté au joueur dès son arrivée, avec le même message qu'en local.
+- Le tour des joueurs déjà visités est tenu par chaque serveur.
+
+Canaux du bus : `staffrtp.demande` (serveur du staff vers tous) et `staffrtp.reponse` (serveur du joueur vers le staff). Rien n'est écrit en base.
+
+Sans SHNetwork, ou avec `reseau.actif: false`, rien ne change : le tirage reste local.
+
 ## Configuration
 
 Fichiers par défaut repris du serveur (secrets remplacés par `CHANGE_ME`). Cliquez sur un fichier pour l'ouvrir :
