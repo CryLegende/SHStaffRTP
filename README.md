@@ -22,7 +22,18 @@ Utilisé sur : **Opale**.
 
 | Commande | Alias | Description | Permission |
 |---|---|---|---|
-| `/staffrtp` | — | Téléporte le staff à un joueur aléatoire | — |
+| `/staffrtp` | — | Téléporte le staff à un joueur aléatoire | `shstaffrtp.use` |
+| `/shstaffrtp reload` | — | Recharge `config.yml` et `messages.yml` ; si un fichier est illisible, l'ancienne configuration reste active. La section `reseau` demande un redémarrage. | `shstaffrtp.admin.reload` |
+| `/shstaffrtp reset` | — | Vide la liste des joueurs déjà visités : le tour repart de zéro. | `shstaffrtp.admin.reset` |
+
+## Permissions
+
+| Permission | Description | Par défaut |
+|---|---|---|
+| `shstaffrtp.use` | Utiliser `/staffrtp`. | `op` |
+| `shstaffrtp.bypass` | Ne jamais être tiré au sort. | `op` |
+| `shstaffrtp.admin` | Toutes les sous-commandes de `/shstaffrtp`. | `op` |
+| `shstaffrtp.admin.reload` `.reset` | Une sous-commande de `/shstaffrtp`. | `op` |
 
 ## Plusieurs serveurs (SHNetwork)
 
@@ -42,8 +53,11 @@ Fichiers par défaut repris du serveur (secrets remplacés par `CHANGE_ME`). Cli
 
 <pre>
 plugins/SHStaffRTP/
-└── <a href="src/main/resources/config.yml">config.yml</a>
+├── <a href="src/main/resources/config.yml">config.yml</a>
+└── <a href="src/main/resources/messages.yml">messages.yml</a>
 </pre>
+
+`config.yml` règle le mode réseau ; `messages.yml` contient tous les textes, dont le message JSON `teleportedTo`.
 
 ## Compilation
 

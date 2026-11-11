@@ -1,0 +1,57 @@
+# Messages de SHStaffRTP. Codes couleur & ; un message vide ("") n'est pas envoyé.
+#
+# Placeholders :
+#   {commands}   sous-commandes de /shstaffrtp que l'expéditeur peut utiliser (usage)
+#   {file}       fichier illisible (reload-failed)
+#   {error}      erreur de lecture du fichier (reload-failed)
+
+onlyPlayers: "&7&l« &c&lSH &8&l» &7Cette commande est réservée aux &cjoueurs&7."
+noPermission: "&8&l« &f&lSH &8&l» &fCommande inconnue, essayer autre chose."
+allPlayersVisited: |-
+  &7&l« &a&lSH &8&l» &7Vous avez visité tout les joueurs connectés
+  &7(votre travail sera récompensé par la compagnie)
+
+# Message envoyé au membre du staff après la téléportation : un texte JSON (composants de chat) où PlaceholderAPI
+# remplit les placeholders avec le joueur visité. Les clics lancent /tp et /inv sur ce joueur.
+teleportedTo: |-
+  [
+    {
+      "text": "&r\n"
+    },
+    {
+      "text": "&7&l« &e&lSH &8&l» &f"
+    },
+    {
+      "text": "%vault_prefix%%player_name%",
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/tp %player_name%"
+      }
+    },
+    {
+      "text": " %jetsantiafkpro_isafk% "
+    },
+    {
+      "text": "&e(inv)",
+      "clickEvent": {
+        "action": "run_command",
+        "value": "/inv %player_name%"
+      },
+      "hoverEvent": {
+        "action": "show_text",
+        "value": "&7Clic pour voir l'inventaire de &6%player_name%"
+      }
+    },
+    {
+      "text": "\n&7&l« &e&lSH &8&l» &7En ligne depuis &e%jetsantiafkpro_session_timeplayed_hours%h%jetsantiafkpro_session_timeplayed_minutes%m &8(&7Temps de jeux : &e%jetsantiafkpro_timeplayed_hours_unformatted%h&8)"
+    },
+    {
+      "text": "\n&7&l« &e&lSH &8&l» &7Fly: %changeoutput_equals_input:{player_is_flying}_matcher:yes_ifmatch:&aOui_else:&cNon% &7&l| &7Tempfly: %shtempfly_time%"
+    }
+  ]
+
+# /shstaffrtp
+usage: "&7&l« &e&lSH &8&l» &7Utilisation : &e/shstaffrtp <{commands}>&7."
+reloaded: "&7&l« &a&lSH &8&l» &7Configuration &arechargée&7. La section &ereseau &7de config.yml demande un redémarrage."
+reload-failed: "&7&l« &c&lSH &8&l» &7Rechargement &cimpossible&7, &c{file} &7illisible : &c{error}&7. L'ancienne configuration reste active."
+reset-done: "&7&l« &a&lSH &8&l» &7Le tour est &aremis à zéro&7 : tous les joueurs peuvent de nouveau être tirés."

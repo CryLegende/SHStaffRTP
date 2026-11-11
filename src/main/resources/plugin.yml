@@ -11,3 +11,26 @@ commands:
   staffrtp:
     description: Téléporte le staff à un joueur aléatoire
     usage: /<command>
+  shstaffrtp:
+    description: Administration de SHStaffRTP.
+    usage: /<command> <reload|reset>
+
+permissions:
+  shstaffrtp.use:
+    description: Utiliser /staffrtp.
+    default: op
+  shstaffrtp.bypass:
+    description: Ne jamais être tiré au sort par /staffrtp.
+    default: op
+  shstaffrtp.admin:
+    description: Toutes les sous-commandes de /shstaffrtp.
+    default: op
+    children:
+      shstaffrtp.admin.reload: true
+      shstaffrtp.admin.reset: true
+  shstaffrtp.admin.reload:
+    description: /shstaffrtp reload, recharge config.yml et messages.yml.
+    default: op
+  shstaffrtp.admin.reset:
+    description: /shstaffrtp reset, vide la liste des joueurs déjà visités.
+    default: op

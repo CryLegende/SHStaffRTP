@@ -3,70 +3,28 @@
 # Téléporte un membre du staff à un joueur connecté tiré au hasard. Un joueur déjà visité n'est plus tiré avant que
 # tous les autres l'aient été (le tour recommence alors) ; les joueurs qui ont shstaffrtp.bypass ne sont jamais tirés.
 #
-# Commande :
-#   /staffrtp                        Téléportation au joueur tiré.
+# Commandes :
+#   /staffrtp                  Téléportation au joueur tiré.
+#   /shstaffrtp reload         Recharge config.yml et messages.yml (la section reseau demande un redémarrage).
+#   /shstaffrtp reset          Vide la liste des joueurs déjà visités : le tour repart de zéro.
 #
 # Permissions :
-#   shstaffrtp.use                   Utiliser /staffrtp.
-#   shstaffrtp.bypass                Ne jamais être tiré au sort.
+#   shstaffrtp.use             Utiliser /staffrtp (op par défaut).
+#   shstaffrtp.bypass          Ne jamais être tiré au sort (op par défaut).
+#   shstaffrtp.admin           Toutes les sous-commandes de /shstaffrtp (op par défaut).
+#   shstaffrtp.admin.reload    /shstaffrtp reload (op par défaut).
+#   shstaffrtp.admin.reset     /shstaffrtp reset (op par défaut).
 #
-# Les textes sont dans la section messages ci-dessous : teleportedTo est un message JSON où PlaceholderAPI remplit
-# les placeholders avec le joueur visité.
+# Les textes sont dans messages.yml : teleportedTo est un message JSON où PlaceholderAPI remplit les placeholders avec
+# le joueur visité.
 #
 # Mode réseau, actif seulement si SHNetwork est installé : le tirage porte sur les joueurs de tous les serveurs.
 # Quand le joueur tiré est sur un autre serveur, son serveur confirme qu'il peut être visité, le membre du staff y est
 # envoyé puis téléporté à lui dès son arrivée. Le tour des joueurs déjà visités est tenu par chaque serveur.
+# Toute cette section se lit au démarrage : la modifier demande un redémarrage.
 reseau:
   actif: true
   # Temps laissé au serveur du joueur tiré pour répondre, en ticks. Sans réponse, un autre joueur est tiré.
   attente-reponse-ticks: 40
   # Temps laissé à l'arrivée sur l'autre serveur avant la téléportation, en ticks, le temps que les données du staff se chargent.
   delai-arrivee-ticks: 30
-
-messages:
-  onlyPlayers: "Seuls les joueurs peuvent utiliser cette commande !"
-  noPermission: "&8&l« &f&lSH &8&l» &fCommande inconnue, essayer autre chose."
-  allPlayersVisited: |-
-    &7&l« &a&lSH &8&l» &7Vous avez visité tout les joueurs connectés
-    &7(votre travail sera récompensé par la compagnie)
-  teleportedTo: '[
-        {
-            "text": "&r\n"
-        },
-        {
-            "text": "&7&l« &e&lSH &8&l» &f"
-        },
-        {
-            "text": "%vault_prefix%%player_name%",
-            "clickEvent": {
-                "action": "run_command",
-                "value": "/tp %player_name%"
-            }
-        },
-        {
-            "text": " %jetsantiafkpro_isafk% "
-        },
-        {
-            "text": "&e(inv)",
-            "clickEvent": {
-                "action": "run_command",
-                "value": "/inv %player_name%"
-            },
-            "hoverEvent": {
-                "action":"show_text",
-                "value":"&7Clic pour voir l''inventaire de &6%player_name%"
-            }
-
-        },
-        {
-            "text": "\n&7&l« &e&lSH &8&l» &7En ligne depuis &e%jetsantiafkpro_session_timeplayed_hours%h%jetsantiafkpro_session_timeplayed_minutes%m &8(&7Temps de jeux : &e%jetsantiafkpro_timeplayed_hours_unformatted%h&8)"
-        },
-        {
-            "text": "\n&7&l« &e&lSH &8&l» &7Fly: %changeoutput_equals_input:{player_is_flying}_matcher:yes_ifmatch:&aOui_else:&cNon% &7&l| &7Tempfly: %shtempfly_time%"
-        }
-    ]'
-
-
-  # teleportedTo: |-
-  #   &7&l« &e&lSH &8&l» &fTéléportation à %vault_prefix%%player% %jetsantiafkpro_isafk% &e(inv)
-  #   &7&l« &e&lSH &8&l» &7Fly: %changeoutput_equals_input:{player_is_flying}_matcher:yes_ifmatch:&aOui_else:&cNon% &7&l| &7TFly: &d%shtempfly_time%
