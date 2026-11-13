@@ -49,7 +49,7 @@ Sans SHNetwork, ou avec `reseau.actif: false`, rien ne change : le tirage reste 
 
 ## Configuration
 
-Fichiers par défaut repris du serveur (secrets remplacés par `CHANGE_ME`). Cliquez sur un fichier pour l'ouvrir :
+Fichiers par défaut, avec des valeurs d'exemple. Cliquez sur un fichier pour l'ouvrir :
 
 <pre>
 plugins/SHStaffRTP/
